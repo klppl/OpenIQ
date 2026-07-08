@@ -1,0 +1,25 @@
+# Secrets — NEVER commit. The real values live here (see secrets.env.example).
+secrets.env
+*.local.env
+.env
+
+# Local OAuth token cache (also written to ~/.config)
+*-tokens.json
+garmin-store-tokens.json
+
+# Build artifacts
+/ciq
+/ciq-store
+*.exe
+
+# Reverse-engineering artifacts — large and not for publishing.
+# (These normally live in the parent folder; listed here in case the repo
+#  root is moved up. Add matching entries to a root .gitignore if so.)
+*.apk
+*.apkm
+*.xapk
+*.so
+jadx-out/
+bundle/
+libs/
+extracted/

@@ -1,0 +1,22 @@
+# Never bake secrets or local state into the image — they come from env at runtime.
+secrets.env
+*.local.env
+.env
+*-tokens.json
+garmin-store-tokens.json
+
+# Build/VCS cruft
+.git
+/ciq
+/ciq-store
+*.exe
+
+# Reverse-engineering artifacts (large)
+*.apk
+*.apkm
+*.xapk
+*.so
+jadx-out/
+bundle/
+libs/
+extracted/

@@ -1,0 +1,15 @@
+{{template "head" .}}
+<div style="max-width:420px;margin:6vh auto 0">
+  <h1>Sign in to Garmin</h1>
+  <p class="sub">Browsing the Connect IQ store requires a Garmin&nbsp;Connect account.
+     Your credentials are sent only to Garmin and the OAuth tokens are cached locally on this machine.</p>
+  {{if .Err}}<div class="pill" style="color:#ff6b6b;border-color:#552;display:block;margin-bottom:14px;padding:10px 12px">{{.Err}}</div>{{end}}
+  <form method="post" action="/login" style="display:flex;flex-direction:column;gap:12px">
+    <input class="field" type="email" name="email" placeholder="Garmin email" required autofocus>
+    <input class="field" type="password" name="password" placeholder="Password" required>
+    <button class="btn" type="submit">Sign in</button>
+  </form>
+  <p class="sub" style="margin-top:20px">Only the device list is public; everything else (apps, watch faces, search)
+     is gated behind Garmin login — same as the mobile app.</p>
+</div>
+{{template "foot" .}}

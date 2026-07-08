@@ -1,0 +1,8 @@
+{{template "head" .}}
+<a class="backlink" href="/">← Home</a>
+<h1>Something went wrong</h1>
+<div class="card" style="margin-top:12px;border-color:#552">
+  <div style="color:#ff8080;font-family:ui-monospace,monospace;white-space:pre-wrap;word-break:break-word">{{.Err}}</div>
+</div>
+<p class="sub" style="margin-top:16px">If this says HTTP 401, your session may have expired — try <a href="/logout" style="color:var(--accent)">logging out</a> and back in.</p>
+{{template "foot" .}}

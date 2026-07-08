@@ -1,0 +1,59 @@
+{{template "head" .}}
+<a class="backlink" href="/">← All devices</a>
+<h1>{{.Device.Name}}</h1>
+<p class="sub"><span class="pill">{{.Device.PartNumber}}</span> · unit&nbsp;{{.Device.ID}}</p>
+
+<div class="tabs">
+  <a class="tab {{if eq .Type "FEATURED"}}on{{end}}" href="/device/{{.Device.ID}}?type=FEATURED">★ Featured</a>
+  {{range .AppTypes}}
+  <a class="tab {{if eq $.Type .Key}}on{{end}}" href="/device/{{$.Device.ID}}?type={{.Key}}">{{.Label}}</a>
+  {{end}}
+</div>
+
+<div class="toolbar">
+  <form method="get" action="/device/{{.Device.ID}}">
+    <input type="hidden" name="type" value="{{.Type}}">
+    <input class="field" type="text" name="q" value="{{.Q}}" placeholder="Search this device’s store…" style="min-width:260px">
+    <button class="btn" type="submit">Search</button>
+  </form>
+  {{if ne .Type "FEATURED"}}
+  <form method="get" action="/device/{{.Device.ID}}" style="display:flex;gap:8px">
+    <input type="hidden" name="type" value="{{.Type}}">
+    {{if .Q}}<input type="hidden" name="q" value="{{.Q}}">{{end}}
+    <select class="field" name="sort" onchange="this.form.submit()">
+      {{range .Sorts}}<option value="{{.Key}}" {{if eq $.Sort .Key}}selected{{end}}>{{.Label}}</option>{{end}}
+    </select>
+  </form>
+  {{end}}
+</div>
+
+{{if .Apps}}
+<div class="grid appgrid">
+  {{range .Apps}}
+  <a class="card appcard" href="/app/{{.ID}}?unit={{$.Device.ID}}">
+    <div class="row">
+      <img class="icon" src="{{img .IconFileID}}" alt="" loading="lazy">
+      <div>
+        <div class="nm">{{trim .Name 42}}</div>
+        <div class="dev2">{{.DeveloperName}}</div>
+      </div>
+    </div>
+    <div class="meta">
+      {{if .AverageRating}}<span class="stars">{{stars .AverageRating}}</span>{{end}}
+      {{if .DownloadCount}}<span>↓ {{commas .DownloadCount}}</span>{{end}}
+      <span class="price">{{.PriceLabel}}</span>
+    </div>
+    {{if .IsTrending}}<div class="trending">🔥 Trending</div>{{end}}
+  </a>
+  {{end}}
+</div>
+
+<div class="pager">
+  {{if gt .Page 0}}<a class="tab" href="/device/{{.Device.ID}}?type={{.Type}}&sort={{.Sort}}&q={{.Q}}&page={{.PrevPage}}">← Prev</a>{{end}}
+  <span class="tab on">Page {{.Page}}</span>
+  {{if .HasMore}}<a class="tab" href="/device/{{.Device.ID}}?type={{.Type}}&sort={{.Sort}}&q={{.Q}}&page={{.NextPage}}">Next →</a>{{end}}
+</div>
+{{else}}
+<div class="empty">No results.</div>
+{{end}}
+{{template "foot" .}}

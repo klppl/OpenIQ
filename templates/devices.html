@@ -1,0 +1,25 @@
+{{template "head" .}}
+<h1>Choose a device</h1>
+<p class="sub">{{.Count}} models · pick one to browse its compatible watch faces &amp; apps</p>
+
+<div class="toolbar">
+  <form method="get" action="/">
+    <input class="field" type="text" name="q" value="{{.Q}}" placeholder="Search models (e.g. Fenix, Instinct, 965)…" style="min-width:320px" autofocus>
+    <button class="btn" type="submit">Search</button>
+  </form>
+</div>
+
+{{if .Devices}}
+<div class="grid devgrid">
+  {{range .Devices}}
+  <a class="card dev" href="/device/{{.ID}}">
+    <div class="nm">{{.Name}}</div>
+    <div class="pn">{{.PartNumber}}</div>
+    {{if .AdditionalNames}}<div class="pn" style="margin-top:6px;color:#5f6b7c">+{{len .AdditionalNames}} editions</div>{{end}}
+  </a>
+  {{end}}
+</div>
+{{else}}
+<div class="empty">No devices match “{{.Q}}”.</div>
+{{end}}
+{{template "foot" .}}

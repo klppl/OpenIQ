@@ -1,0 +1,20 @@
+services:
+  ciq-store:
+    build: .
+    # or: image: ghcr.io/you/ciq-store:latest
+    restart: unless-stopped
+    # Loads GARMIN_* vars from secrets.env on the HOST (gitignored) and injects
+    # them as container env — the file itself never enters the image.
+    env_file:
+      - secrets.env
+    environment:
+      ADDR: ":8087"
+      GARMIN_TOKEN_FILE: /data/tokens.json
+    volumes:
+      - ciq-tokens:/data
+    # Behind Cloudflare Zero Trust, bind only to localhost / your tunnel.
+    ports:
+      - "127.0.0.1:8087:8087"
+
+volumes:
+  ciq-tokens:

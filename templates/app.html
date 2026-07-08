@@ -1,0 +1,62 @@
+{{template "head" .}}
+{{with .App}}
+<a class="backlink" href="{{if $.Unit}}/device/{{$.Unit}}{{else}}/{{end}}">← Back</a>
+
+<div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;margin-bottom:8px">
+  <img class="icon" src="{{img .IconFileID}}" alt="" style="width:96px;height:96px;border-radius:22px">
+  <div style="flex:1;min-width:240px">
+    <h1 style="font-size:26px">{{.Name}}</h1>
+    <div class="sub" style="margin-bottom:10px">{{.DeveloperName}}{{if .LatestExternalVersion}} · v{{.LatestExternalVersion}}{{end}}</div>
+    <div class="meta" style="gap:16px;font-size:14px">
+      {{if .AverageRating}}<span class="stars">{{stars .AverageRating}}</span> <span>{{if .ReviewCount}}({{commas .ReviewCount}}){{end}}</span>{{end}}
+      {{if .DownloadCount}}<span>↓ {{commas .DownloadCount}} downloads</span>{{end}}
+      <span class="pill">{{.TypeID}}</span>
+      <span class="price" style="margin-left:0">{{.PriceLabel}}</span>
+      {{if .HasTrialMode}}<span class="pill">Free trial</span>{{end}}
+    </div>
+  </div>
+</div>
+
+{{if .ScreenshotFileIDs}}
+<div style="display:flex;gap:12px;overflow-x:auto;padding:16px 0;margin:8px 0">
+  {{range .ScreenshotFileIDs}}
+  <img src="{{shot .}}" alt="" loading="lazy"
+       style="height:230px;border-radius:16px;border:1px solid var(--line);flex:none;background:var(--panel2)">
+  {{end}}
+</div>
+{{end}}
+
+{{if .Description}}
+<div class="card" style="margin-top:12px">
+  <h3 style="margin:0 0 8px">About</h3>
+  <div style="white-space:pre-wrap;color:#c8d2df">{{.Description}}</div>
+</div>
+{{end}}
+
+{{if .WhatsNew}}
+<div class="card" style="margin-top:14px">
+  <h3 style="margin:0 0 8px">What's new</h3>
+  <div style="white-space:pre-wrap;color:#c8d2df">{{.WhatsNew}}</div>
+</div>
+{{end}}
+
+<div class="grid" style="grid-template-columns:1fr 1fr;margin-top:14px">
+  {{if .Permissions}}
+  <div class="card">
+    <h3 style="margin:0 0 8px">Permissions</h3>
+    {{range .Permissions}}<span class="pill" style="margin:0 6px 6px 0;display:inline-block">{{.}}</span>{{end}}
+  </div>
+  {{end}}
+  <div class="card">
+    <h3 style="margin:0 0 8px">Details</h3>
+    <div class="sub" style="margin:0">
+      {{if .CompatibleDevicePartNumbers}}Compatible with {{len .CompatibleDevicePartNumbers}} devices<br>{{end}}
+      {{if .Changed}}Updated {{.Changed}}<br>{{end}}
+      {{if .WebsiteURL}}<a href="{{.WebsiteURL}}" style="color:var(--accent)">Developer website ↗</a><br>{{end}}
+      {{if .PrivacyPolicyURL}}<a href="{{.PrivacyPolicyURL}}" style="color:var(--accent)">Privacy policy ↗</a><br>{{end}}
+      <a href="https://apps.garmin.com/apps/{{.ID}}" style="color:var(--accent)">Open on apps.garmin.com ↗</a>
+    </div>
+  </div>
+</div>
+{{end}}
+{{template "foot" .}}
