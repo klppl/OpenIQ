@@ -240,8 +240,10 @@ func (q AppQuery) values() url.Values {
 		q.Country = "US"
 	}
 	v := url.Values{
-		"pageSize":             {strconv.Itoa(q.PageSize)},
-		"startPageIndex":       {strconv.Itoa(q.Page)},
+		"pageSize": {strconv.Itoa(q.PageSize)},
+		// The store treats startPageIndex as a record offset, not a page number,
+		// so advance by a full page each step (page 1 -> record 30, not 1).
+		"startPageIndex":       {strconv.Itoa(q.Page * q.PageSize)},
 		"countryCode":          {q.Country},
 		"companionAppPlatform": {"ANDROID"},
 	}
