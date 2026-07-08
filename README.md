@@ -38,14 +38,27 @@ never end up in committed source. (You can also just export the vars instead.)
 | `GARMIN_CIQ_CONSUMER_KEY` / `..._SECRET` | **Required.** Connect IQ store OAuth1 consumer, found in the app's native `libsr.so` (`config.arm64_v8a` split): `strings libsr.so \| grep -A1 CIQ_APPSTORE_MOBILE`. The store derives your identity from a signature made with this consumer — a bearer token is rejected. |
 | `GARMIN_LOGIN_CONSUMER_KEY` / `..._SECRET` | Optional. The public Garmin Connect Mobile consumer (built-in default works). |
 
-> 💡 **Don't want to extract the APK yourself?** These aren't a personal secret —
-> they're a single app-wide consumer key that Garmin ships inside the public Connect
-> IQ app, so the same value is baked into every install. Unsurprisingly, it has been
-> committed to plenty of public repos already: a quick
+Only the **CIQ appstore** pair (`GARMIN_CIQ_CONSUMER_KEY/SECRET`) actually needs
+sourcing — the login consumer already has a working built-in default. It isn't a
+personal secret: it's a single app-wide value Garmin ships inside the public Connect
+IQ app, identical on every install.
+
+**Extract it from the app (arm64):**
+
+```bash
+# 1. Grab the Connect IQ app APK bundle (e.g. from apkmirror.com / apkpure.com);
+#    these come as a split .apkm/.xapk (a zip of per-arch APKs).
+unzip 'Connect IQ*.apkm' -d ciq && cd ciq
+unzip -o 'config.arm64_v8a.apk' lib/arm64-v8a/libsr.so   # the native lib lives here
+
+# 2. The key and secret are the two strings right after the CIQ_APPSTORE_MOBILE marker:
+strings lib/arm64-v8a/libsr.so | grep -A2 CIQ_APPSTORE_MOBILE
+```
+
+> 💡 **No APK on hand?** Because it's committed to plenty of public repos, a
 > [GitHub code search for `CIQ_APPSTORE_MOBILE`](https://github.com/search?q=CIQ_APPSTORE_MOBILE&type=code)
-> (or for the `GARMIN_CIQ_CONSUMER_KEY` variable name) will usually surface a working
-> key/secret pair. Drop them into your own gitignored `secrets.env` — don't paste them
-> back into any committed file.
+> usually surfaces a working pair. Either way, put the values only in your gitignored
+> `secrets.env` — never back into a committed file.
 
 > ⚠️ **Do not commit these or paste them into README/source.** Publishing them
 > lets Garmin rotate the key (breaking the tool) and violates their ToS. Keep
