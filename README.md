@@ -1,8 +1,24 @@
-# OpenIQ
+# OpenIQ — a self-hosted Garmin Connect IQ store in your browser
 
-A self-contained Go web app that reverse-engineers Garmin's Connect IQ mobile API
-so you can browse **device model → compatible watch faces / apps / widgets / data fields**
-from a browser — the store website Garmin removed.
+> Browse Garmin **watch faces, apps, widgets, and data fields** by device model
+> from any web browser — a lightweight, self-hosted replacement for the Connect IQ
+> store website that Garmin removed.
+
+OpenIQ is a single, dependency-free **Go** web app that reverse-engineers Garmin's
+Connect IQ *mobile* API. Pick any of the 354 supported Garmin devices (Forerunner,
+Fenix, Venu, Epix, Instinct, Vívoactive, and more) and browse everything compatible
+with it — the store experience Garmin shut down, running on your own machine or VPS.
+
+![OpenIQ screenshot — browsing compatible watch faces for a Garmin Forerunner 265, shown as a grid of watch-face thumbnails with ratings and download counts](./screenshot.png)
+
+## Features
+
+- 🔎 **Browse by device** — select a Garmin model and see its compatible watch faces, apps, widgets, and data fields.
+- ⌚ **Every model type** — watch faces, watch apps, widgets, data fields, and music/audio apps.
+- 🔠 **Keyword search & sorting** — search a device's store and sort by rating, popularity, most recent, trending, or hot & fresh.
+- 🐳 **Self-hostable** — run locally with `go run .` or deploy the Docker image behind Cloudflare / a reverse proxy.
+- 📦 **Zero dependencies** — pure Go standard library; no framework, no database.
+- 🔐 **Uses your own Garmin account** — signs in exactly like the mobile app via OAuth1.
 
 ## Configuration (secrets)
 
@@ -44,9 +60,46 @@ For an unattended deployment (e.g. a VPS behind Cloudflare Zero Trust), set
 startup, hides the login form, and serves the store directly — access control is
 delegated to whatever sits in front (Cloudflare, a reverse proxy, etc.).
 
+### Quick VPS deploy (pull the published image)
+
+You only need **two files** on the VPS — `docker-compose.yml` and `secrets.env`
+(no need to clone the whole repo).
+
+```bash
+# 0. First publish an image once: repo → Actions → "Build & publish image" → Run workflow
+
+# 1. On the VPS, in an empty dir, drop the two files:
+#    - docker-compose.yml  (copy from this repo; set YOUR_GITHUB_USERNAME on the image line)
+#    - secrets.env         (see the required keys below)
+
+# 2. secrets.env — the minimum for headless mode:
+cat > secrets.env <<'EOF'
+GARMIN_CIQ_CONSUMER_KEY=...        # from libsr.so (see secrets.env.example)
+GARMIN_CIQ_CONSUMER_SECRET=...
+GARMIN_EMAIL=your-dedicated@account
+GARMIN_PASSWORD=your-password      # unquoted; no MFA on this account
+EOF
+chmod 600 secrets.env
+
+# 3. Log in to GHCR once (private package → needs a PAT with read:packages):
+echo <YOUR_PAT> | docker login ghcr.io -u <your-username> --password-stdin
+
+# 4. Pull + start:
+docker compose pull && docker compose up -d
+docker compose logs -f        # look for "auto-login OK"
+
+# 5. Point your Cloudflare tunnel / reverse proxy at http://localhost:8087
+```
+
+> If you run `cloudflared` (or your proxy) as **another container**, it can't reach
+> `127.0.0.1:8087` on the host — put both on the same Docker network and target
+> `http://openiq:8087`, or change the port binding to `8087:8087`.
+
+### Local build instead
+
 ```bash
 cp secrets.env.example secrets.env    # fill in CIQ keys + GARMIN_EMAIL/PASSWORD
-docker compose up -d --build
+docker compose up -d --build          # (edit compose: comment `image:`, uncomment `build: .`)
 ```
 
 - `docker-compose.yml` loads `secrets.env` on the host via `env_file` — the file
@@ -161,3 +214,14 @@ templates/*.html   UI (device picker, browse-by-type, app detail)
 ```
 
 No third-party dependencies — standard library only.
+
+---
+
+<sub>**Keywords:** Garmin · Connect IQ · Connect IQ store · watch faces · Garmin apps ·
+widgets · data fields · Garmin Forerunner · Fenix · Venu · Epix · Instinct · Vívoactive ·
+smartwatch · wearables · self-hosted · Go · Golang · Docker · reverse engineering ·
+Garmin API.</sub>
+
+> Suggested **GitHub topics** for this repo (Settings → Topics): `garmin`,
+> `connect-iq`, `watch-faces`, `smartwatch`, `wearables`, `self-hosted`, `golang`,
+> `go`, `docker`, `reverse-engineering`.
