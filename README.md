@@ -1,4 +1,4 @@
-# Connect IQ Store Browser
+# OpenIQ
 
 A self-contained Go web app that reverse-engineers Garmin's Connect IQ mobile API
 so you can browse **device model → compatible watch faces / apps / widgets / data fields**
@@ -31,7 +31,7 @@ never end up in committed source. (You can also just export the vars instead.)
 
 ```bash
 cd app
-go run .            # or: go build -o ciq-store . && ./ciq-store
+go run .            # or: go build -o openiq . && ./openiq
 ```
 
 Open http://localhost:8087 and sign in with your **Garmin Connect** account
@@ -50,7 +50,7 @@ docker compose up -d --build
 ```
 
 - `docker-compose.yml` loads `secrets.env` on the host via `env_file` — the file
-  never enters the image. Tokens persist in the `ciq-tokens` volume, so restarts
+  never enters the image. Tokens persist in the `openiq-tokens` volume, so restarts
   don't re-login.
 - It binds to `127.0.0.1:8087` by default; point your Cloudflare tunnel / reverse
   proxy at that. **Do not expose the port publicly without access control** — the
@@ -62,9 +62,42 @@ docker compose up -d --build
 Plain `docker run` works too:
 
 ```bash
-docker build -t ciq-store .
-docker run -d -p 127.0.0.1:8087:8087 --env-file secrets.env -v ciq-tokens:/data ciq-store
+docker build -t openiq .
+docker run -d -p 127.0.0.1:8087:8087 --env-file secrets.env -v openiq-tokens:/data openiq
 ```
+
+### Publish an image (GitHub Actions) and pull it on the VPS
+
+A manual workflow builds the image and pushes it to the GitHub Container Registry:
+
+1. In the repo: **Actions → "Build & publish image" → Run workflow** (optionally
+   enter an extra tag). It publishes `ghcr.io/<your-username>/openiq:latest`.
+   Uses the built-in token — no secrets to configure.
+
+2. On the VPS, authenticate to GHCR once (the package is private since the repo
+   is). Create a Personal Access Token with the `read:packages` scope, then:
+
+   ```bash
+   echo <YOUR_PAT> | docker login ghcr.io -u <your-username> --password-stdin
+   ```
+
+3. Point `docker-compose.yml` at your image (edit `YOUR_GITHUB_USERNAME`) and:
+
+   ```bash
+   docker compose pull && docker compose up -d
+   ```
+
+   Or without compose:
+
+   ```bash
+   docker pull ghcr.io/<your-username>/openiq:latest
+   docker run -d --restart unless-stopped \
+     -p 127.0.0.1:8087:8087 --env-file secrets.env \
+     -v openiq-tokens:/data ghcr.io/<your-username>/openiq:latest
+   ```
+
+`secrets.env` lives only on the VPS (with your `GARMIN_*` values); it is never
+built into the image.
 
 - Change the port with `ADDR=:9000 go run .`
 - OAuth tokens are cached at `~/.config/garmin-store-tokens.json` (chmod 600).

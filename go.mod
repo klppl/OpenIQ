@@ -1,3 +1,3 @@
-module garminstore
+module openiq
 
 go 1.23

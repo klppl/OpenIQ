@@ -15,7 +15,7 @@ import (
 	"sync"
 	"time"
 
-	"garminstore/garmin"
+	"openiq/garmin"
 )
 
 //go:embed templates/*.html
@@ -108,7 +108,7 @@ func main() {
 	if v := os.Getenv("ADDR"); v != "" {
 		addr = v
 	}
-	log.Printf("Garmin Connect IQ store browser → http://localhost%s  (tokens: %s)", addr, tokenFile)
+	log.Printf("OpenIQ — Connect IQ store browser → http://localhost%s  (tokens: %s)", addr, tokenFile)
 	log.Fatal(http.ListenAndServe(addr, mux))
 }
 

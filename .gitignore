@@ -9,7 +9,7 @@ garmin-store-tokens.json
 
 # Build artifacts
 /ciq
-/ciq-store
+/openiq
 *.exe
 
 # Reverse-engineering artifacts — large and not for publishing.

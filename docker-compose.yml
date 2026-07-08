@@ -1,7 +1,10 @@
 services:
-  ciq-store:
-    build: .
-    # or: image: ghcr.io/you/ciq-store:latest
+  openiq:
+    # On the VPS, pull the image published by the GitHub Action instead of building:
+    image: ghcr.io/YOUR_GITHUB_USERNAME/openiq:latest
+    # For a local build instead, comment out `image:` above and uncomment:
+    # build: .
+    pull_policy: always
     restart: unless-stopped
     # Loads GARMIN_* vars from secrets.env on the HOST (gitignored) and injects
     # them as container env — the file itself never enters the image.
@@ -11,10 +14,10 @@ services:
       ADDR: ":8087"
       GARMIN_TOKEN_FILE: /data/tokens.json
     volumes:
-      - ciq-tokens:/data
+      - openiq-tokens:/data
     # Behind Cloudflare Zero Trust, bind only to localhost / your tunnel.
     ports:
       - "127.0.0.1:8087:8087"
 
 volumes:
-  ciq-tokens:
+  openiq-tokens:

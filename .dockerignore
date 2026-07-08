@@ -8,7 +8,7 @@ garmin-store-tokens.json
 # Build/VCS cruft
 .git
 /ciq
-/ciq-store
+/openiq
 *.exe
 
 # Reverse-engineering artifacts (large)
