@@ -109,7 +109,15 @@ func main() {
 		addr = v
 	}
 	log.Printf("OpenIQ — Connect IQ store browser → http://localhost%s  (tokens: %s)", addr, tokenFile)
-	log.Fatal(http.ListenAndServe(addr, mux))
+	srv := &http.Server{
+		Addr:              addr,
+		Handler:           mux,
+		ReadHeaderTimeout: 10 * time.Second, // cap slow-header (Slowloris) clients
+		ReadTimeout:       30 * time.Second,
+		WriteTimeout:      60 * time.Second, // upstream Garmin calls can be slow
+		IdleTimeout:       120 * time.Second,
+	}
+	log.Fatal(srv.ListenAndServe())
 }
 
 // loadEnvFile reads simple KEY=VALUE lines from path into the environment
