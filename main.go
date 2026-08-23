@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"embed"
 	"errors"
 	"html/template"
@@ -152,10 +153,17 @@ func (s *server) render(w http.ResponseWriter, name string, data map[string]any)
 	}
 	data["LoggedIn"] = s.auth.LoggedIn()
 	data["AutoLogin"] = s.auth.AutoLogin()
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	if err := tmpl.ExecuteTemplate(w, name, data); err != nil {
+
+	var buf bytes.Buffer
+	if err := tmpl.ExecuteTemplate(&buf, name, data); err != nil {
 		log.Printf("template %s: %v", name, err)
-		http.Error(w, err.Error(), 500)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	if _, err := buf.WriteTo(w); err != nil {
+		log.Printf("render %s write: %v", name, err)
 	}
 }
 
