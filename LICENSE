@@ -1,21 +1,223 @@
-MIT License
+THE LAGOM LICENSE
 
-Copyright (c) 2026 alexander
+    "Not too much, not too little — just the right amount of freedom."
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This license has no version number. Numbering it would imply it
+could be improved, which would be immodest, or that it needed
+improving, which would be rude.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+OF THIS SOFTWARE, OR WHATEVER THIS IS, HONESTLY
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+PREAMBLE
+
+Most licenses are either too restrictive or too permissive.
+The MIT License wants you to keep a copyright notice around like
+a receipt you'll never need. The GPL wants you to share everything
+like it's kindergarten. The UNLICENSE pretends law doesn't exist.
+The WTFPL tells you to do what the fuck you want, which, while
+admirable in spirit, lacks a certain Scandinavian restraint.
+
+This license is lagom — just the right amount.
+
+DEFINITIONS
+
+"The Software" refers to whatever you found this license attached
+to. Code, configs, a scraper for something niche — we don't judge.
+
+"You" refers to the person reading this. Yes, you.
+
+"The Author" refers to whoever was producing this code instead
+of going outside. Bless them.
+
+"Lagom" (Swedish, adj., adv.; pronounced LAH-gom, not LAY-gum,
+please) — not too much, not too little; sufficient; adequate;
+appropriate; just right. Possibly derived from "laget om", "around
+the team", from a legend in which Vikings passed a horn of mead
+around the circle and each took exactly enough that everyone got
+some. Etymologists consider this legend unlikely. Swedes consider
+it beside the point. Lagom is the amount of milk in your coffee
+that does not need to be discussed. It is the volume of a
+conversation on a commuter train, which is none. It is a salary
+that is fine, a summer house that is red, a political opinion
+held quietly, an applause that ends at the same time for
+everyone. It is the second cinnamon bun, but never the third.
+It is the Goldilocks zone, but with better furniture and
+meatballs. It cannot be measured, only felt, and it is felt
+most strongly when someone else is not being it. To ask "how
+much is lagom?" is itself slightly un-lagom. The Author
+acknowledges that this definition is now far too long, and
+therefore in breach of itself, and has decided to live with that.
+
+GRANT OF RIGHTS
+
+Subject to the two small conditions in clauses 3 and 5 — just
+the two, more would be excessive — the Author grants you the
+following:
+
+1. USAGE: You may use this software for any purpose, commercial
+   or otherwise. The Author trusts you to be reasonable about
+   it, but that trust is a hope, not a condition. Be unreasonable
+   if you must.
+
+2. DISTRIBUTION: You may copy, merge, publish, distribute,
+   sublicense, and/or sell copies of the Software, in original
+   or modified form. Don't make a big deal out of it in either
+   direction. Just put it there.
+
+3. ATTRIBUTION: Retain the original copyright notice in source
+   files and documentation. One line is enough. Don't strip it
+   out, don't put it in 40pt bold font. It's lagom.
+
+4. MODIFICATIONS: You may modify the Software. If you improve
+   the code, good. You could even rewrite it entirely and call
+   it a fork just to avoid credit — nothing in this license
+   stops you. That is between you and your conscience. Your
+   conscience knows what lagom means.
+
+5. LICENSE INCLUSION: Include this license or a clear reference
+   to it in copies of the software. It's just polite.
+
+THINGS THAT ARE NOT REQUIRED BUT WOULD BE NICE
+
+6. You are NOT required to:
+   a) Share your modifications
+      (but hoarding is not lagom)
+   b) Feel guilty about anything
+      (guilt is never lagom)
+
+7. You ARE encouraged to:
+   a) Be a decent human being
+   b) Take a walk sometimes
+   c) Drink water
+   d) Push to main on Fridays only if it feels lagom
+   e) Not power a galactic empire with it. A modest regional
+      empire, at most.
+   f) Not modify it so much that the Author feels inadequate.
+      Some is fine. The Author is sensitive.
+
+ALLEMANSRÄTTEN (THE RIGHT TO ROAM)
+
+You may roam freely through the codebase, as through any Swedish
+forest. You may pick berries (snippets) and mushrooms (helper
+functions), though the Author makes no warranty that the
+mushrooms are not poisonous. Leave no trace. Do not camp in one
+file for more than one night. Close the gate behind you.
+
+ASSEMBLY INSTRUCTIONS
+
+The Software ships flat-packed. Some assembly required. The
+instructions are wordless and feature a small cartoon person who
+seems calmer than you. On completion you will have one leftover
+screw. Do not ask where it goes. It goes nowhere. It has always
+gone nowhere.
+
+JANTELAGEN
+
+You shall not think you are better than this Software.
+The Software does not think it is better than you.
+Nobody here thinks they are anything special. That is the point.
+
+RELEASES AND SUPPORT
+
+Breaking changes are permitted on Saturdays, in moderation, like
+lördagsgodis (Saturday candy). A small bag. Not the big bag.
+
+Issues are handled in order of their queue ticket number.
+Cutting the queue is the only truly unforgivable act under this
+license, and the Author will not say anything about it, but will
+think about it, at length, for years.
+
+No support is available in July. All of July. Issues filed in
+July will be read in August, by an Author with a tan and no
+memory of having written this code.
+
+HAZARDOUS MATERIALS
+
+Certain legacy files are like surströmming. Open them outdoors,
+downwind, with a friend, and never on a plane.
+
+FOR THE AVOIDANCE OF DOUBT
+
+Only clauses 3 and 5 are actual requirements. Everything else
+in this license that sounds like advice is advice, including
+anything about moose, queues, July, candy, or the laundry room.
+The Author cannot legally compel you to drink water.
+The Author can only hope.
+
+LIMITATIONS OF LIABILITY
+
+If the code breaks, that is unfortunate but expected. Don't sue
+the author; they did a reasonable job. If it works perfectly,
+don't over-praise them either. It's just code.
+
+THE SOFTWARE IS PROVIDED "AS IS", WHICH IS A LEGAL WAY OF
+SAYING "GOOD LUCK". THE AUTHOR MAKES NO WARRANTIES, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR THAT
+THE CODE ACTUALLY WORKS.
+
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES,
+OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR
+OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+IF THIS CODE DELETES YOUR DATABASE, BURNS YOUR TOAST, CAUSES
+AN INTERNATIONAL INCIDENT, OR COLLIDES WITH A MOOSE, THAT IS
+BETWEEN YOU AND YOUR BACKUP STRATEGY. YOU HAVE A BACKUP
+STRATEGY. THE AUTHOR HAS NO CONTROL OVER MOOSE. NOBODY DOES.
+
+THE LAGOM CLAUSE
+
+If at any point you feel that your use of this software has
+become excessive, obsessive, or otherwise un-lagom, you are
+encouraged to step away, have a fika, and return when balance
+has been restored.
+
+Similarly, if you feel you are under-using this software, use
+it a little more. Not too much. Just lagom.
+
+DISPUTE RESOLUTION
+
+Any disputes arising from this license shall be governed by
+the laws of Sweden. Ideally, the involved parties sit down over
+coffee and a cinnamon bun and reach a lagom resolution.
+
+If that fails, the aggrieved party is encouraged to escalate in
+the traditional manner: a passive-aggressive note taped to the
+laundry room door ("To whoever keeps leaving lint in the filter.
+Some of us have to live here too. /A neighbour"). No names. No
+eye contact. Ever.
+
+If that also fails, Stockholm District Court has jurisdiction.
+Litigation is never lagom, but it is available.
+
+SEVERABILITY
+
+If any provision of this license is found to be unenforceable,
+the remaining provisions continue in full effect. The license
+does not collapse dramatically over one bad clause. That would
+not be lagom.
+
+TERMINATION
+
+This license is perpetual and irrevocable, because termination
+is too dramatic. It simply exists, quietly, in the background,
+like a well-designed piece of Swedish furniture.
+
+One exception: if you strip the attribution or the license
+itself (clauses 3 and 5), your rights under this license pause
+until you put them back. Not revoked — paused, like a coffee
+break you did not choose. Restore the notice and all is
+forgiven. Grudges are not lagom.
+
+FINAL WORDS
+
+This software is free. Free as in speech, free as in beer,
+free as in that IKEA pencil you definitely did not steal but
+somehow ended up in your pocket.
+
+Do what is sensible. Don't be a hero, and don't be a nuisance.
+Keep it lagom.
+
+Copyright (c) 2026 klppl (https://github.com/klppl)
