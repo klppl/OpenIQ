@@ -1,5 +1,7 @@
 # OpenIQ — Connect IQ store in your browser
 
+[![License: Lagom](https://img.shields.io/badge/license-lagom-9E2B25)](https://klppl.github.io/lagom-license/)
+
 > Browse Garmin **watch faces, apps, widgets, and data fields** by device model from any web browser. A lightweight, self-hostable replacement for the discontinued Connect IQ store website.
 
 [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/klppl/OpenIQ)
